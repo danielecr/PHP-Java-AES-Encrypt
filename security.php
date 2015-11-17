@@ -15,6 +15,10 @@ class Security {
 
 	private static function pkcs5_pad ($text, $blocksize) { 
 		$pad = $blocksize - (strlen($text) % $blocksize); 
+		if($pad == 0) {
+			// if text size is multiple of blocksize, then is added an extra block
+			$pad = $blocksize;
+		}
 		return $text . str_repeat(chr($pad), $pad); 
 	} 
 
